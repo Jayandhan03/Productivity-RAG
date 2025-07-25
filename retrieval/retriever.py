@@ -1,6 +1,6 @@
 from qdrant_client import QdrantClient
-from langchain_community.vectorstores import Qdrant
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_qdrant import Qdrant
+from langchain_huggingface import HuggingFaceEmbeddings
 import os
 from config import QDRANT_HOST, QDRANT_API_KEY, QDRANT_COLLECTIONS
 
@@ -36,3 +36,4 @@ def get_retriever(index_type: str = "hnsw", k: int = 5):
 
     retriever = vectorstore.as_retriever(search_kwargs={"k": k})
     return retriever
+

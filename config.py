@@ -16,9 +16,9 @@ QDRANT_PORT = 443
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY") 
 QDRANT_HOST = os.getenv("QDRANT_HOST")        
 QDRANT_COLLECTIONS = [                        
-    "startup_flat",
-    "startup_hnsw",
-    "startup_quantized"
+    "Enterprise_flat",
+    "Enterprise_hnsw",
+    "Enterprise_quantized"
 ]
 
 # === ✂️ Chunking Settings ===

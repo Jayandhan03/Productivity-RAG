@@ -27,24 +27,12 @@ def run_ingestion_pipeline(folder_path: str):
     documents = list(loader.stream_documents())
     print(f"📄 Loaded {len(documents)} pages from folder: {folder_path}")
 
-    # Log token count per PDF
-    # print("🧮 Token Count per File:")
-    # stats = token_stats_per_file(documents)
-    # for file, count in stats.items():
-    #     print(f"   → {file}: {count:,} tokens")
-
     # Chunking
     chunker = DocumentChunker(chunk_size=512, chunk_overlap=64)
     chunks = chunker.chunk_documents(documents)
     print(f"🔗 Chunked into {len(chunks)} chunks.")
 
-    # 4. Embed Chunks
-    with trace_block():
-        print("🧠 Generating embeddings using Gemini...")
-        embeddings = embed_documents(chunks)
-        print(f"✅ Embedded {len(embeddings)} chunks.")
-
-    vector_size = len(embeddings[0])
+    vector_size = 384
 
     with trace_block():
         index_types = ["flat", "hnsw", "quantized"]
